@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CORS Experiment</title>
+</head>
+
+<body>
+
+    <h1>CORS Experiment</h1>
+
+    <button onclick="getProfile()">Get Profile</button>
+
+    <p id="result"></p>
+
+    <script>
+
+        function getProfile() {
+
+            fetch("http://localhost:8080/profile")
+
+                .then(response => response.json())
+
+                .then(data => {
+
+                    document.getElementById("result").innerText =
+                        "Name: " + data.name +
+                        ", Email: " + data.email +
+                        ", Role: " + data.role;
+
+                })
+
+                .catch(error => {
+
+                    console.error(error);
+
+                    document.getElementById("result").innerText =
+                        "Request failed because of CORS";
+                });
+        }
+
+    </script>
+
+</body>
+</html>
